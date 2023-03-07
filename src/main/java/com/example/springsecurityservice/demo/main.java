@@ -10,6 +10,8 @@ public class main {
         input.put("Asus","may tinh Asus");
         input.put("Book","sach");
         input.put("Cook","com");
+        input.put("Back","tro lai");
+        input.put("Character","ky tu");
 
         for (Map.Entry<String,Map<String,String>> entry : convertToMap(input).entrySet())
         {
@@ -18,16 +20,16 @@ public class main {
     }
     public static Map<String,Map<String,String>> convertToMap(Map<String,String> mapInput) {
 
-        Map<String, Map<String, String>> mapResponse = null;
-        Set<String> keyInput = mapInput.keySet();
-        Set<String> setCharacter = new HashSet<>();
-        for (String key : keyInput) {
-            String character = String.valueOf(key.charAt(0));
-            for (Map.Entry<String, String> entry : mapInput.entrySet()) {
-                if (entry.getKey().startsWith(character)) {
-
-                }
+        Map<String, Map<String, String>> mapResponse = new HashMap<>();
+        for (Map.Entry<String, String> entry : mapInput.entrySet()){
+//            get char index 0
+            String currentCharacter = String.valueOf(entry.getKey().charAt(0));
+            if(!mapResponse.containsKey(currentCharacter)){
+                mapResponse.put(currentCharacter,new HashMap<>());
             }
+
+            mapResponse.get(currentCharacter).put(entry.getKey(), entry.getValue());
+
         }
         return mapResponse;
     }
